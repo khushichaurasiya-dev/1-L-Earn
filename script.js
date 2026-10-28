@@ -42,7 +42,7 @@ document.addEventListener("click", event => {
 });
 
 
-const API_URL = "http://localhost:5000/api";
+const API_URL = "https://skill-service-backend-1-cfl3.onrender.com";
 
 let workers = [];
 
@@ -163,7 +163,7 @@ async function loadWorkers() {
   list.textContent = "Loading workers...";
 
   try {
-    const response = await fetch(`${API_URL}/workers`);
+    const response = await fetch(`${API_URL}/api/workers`);
     const data = await response.json();
     console.log("API status:", response.status);
     console.log("API response:", data);
@@ -401,7 +401,7 @@ function setAuthMode(mode) {
 
 
 
-const APIURL = "http://localhost:5000/api";
+const APIURL = "https://skill-service-backend-1-cfl3.onrender.com";
 
 let authToken = localStorage.getItem("lEarnToken");
 let currentUser = null;
@@ -469,7 +469,7 @@ document.getElementById("authForm").addEventListener("submit", async event => {
 
   try {
     const result = await apiRequest(
-      isSignup ? "/auth/register" : "/auth/login",
+      isSignup ? "/api/auth/register" : "/api/auth/login",
       {
         method: "POST",
         body: JSON.stringify(
@@ -527,7 +527,7 @@ async function loadCurrentUser() {
   if (!authToken) return;
 
   try {
-    const result = await apiRequest("/auth/me");
+    const result = await apiRequest("/api/auth/me");
     currentUser = result.user;
     updateProfile(currentUser);
   } catch (error) {
